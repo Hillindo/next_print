@@ -42,7 +42,7 @@ export default function Home() {
       alert('printed');
       console.log('data', goToPrinter());
     } catch (error) {
-      console.error('Error printing:', error.message);
+      console.error('Error printing:', error);
     }
   };
 
