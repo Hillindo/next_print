@@ -27,21 +27,24 @@ export default function Home() {
         ]
       )
       .encode();
-      return result;
+    return result;
   };
 
   const printResult = async () => {
     try {
-      const printer = await navigator.usb.requestDevice({ filters: [{ interfaceClass: 7 }] });
+      const usbNavigator = navigator as any;
+      const printer = await usbNavigator.usb.requestDevice({
+        filters: [{ interfaceClass: 7 }],
+      });
       await printer.open();
       await printer.claimInterface(0);
       await printer.transferOut(1, goToPrinter());
-      alert('printed')
-      console.log("data", goToPrinter());
+      alert('printed');
+      console.log('data', goToPrinter());
     } catch (error) {
-      console.error("Error printing:", error.message);
+      console.error('Error printing:', error.message);
     }
-  }
+  };
 
   return (
     <main>
